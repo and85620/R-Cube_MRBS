@@ -10,10 +10,10 @@
 // This file is PHP code. Treat it as such.
 
 // Used in style.inc
-$vocab["mrbs"]               = "會議室預約系統";
+$vocab["mrbs"]               = "R-立方租借系統";
 
 // Used in functions.inc
-$vocab["report"]             = "報表";
+$vocab["report"]             = "首頁";
 $vocab["admin"]              = "系統管理";
 $vocab["help"]               = "說明";
 $vocab["search"]             = "搜尋";
