@@ -17,8 +17,10 @@ switch ($default_view)
   case "week":
     $redirect_str = "week.php";
     break;
+  /*default:
+    $redirect_str = "day.php";*/
   default:
-    $redirect_str = "day.php";
+    $redirect_str = "month.php";
 }
 
 $redirect_str .= "?year=$year&month=$month&day=$day&area=$area&room=$room";
