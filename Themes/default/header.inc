@@ -138,7 +138,7 @@ function print_rooms($query_string)
 
 function print_report($query_string)
 {
-  echo "<a href=\"report.php?$query_string\">" . get_vocab("report") . "</a>\n";
+  echo "<a href=\"month.php?$query_string\">" . get_vocab("report") . "</a>\n";
 }
 
 
