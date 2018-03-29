@@ -70,7 +70,7 @@ $formvars = array('create_by'          => 'string',
                   'end_day'            => 'int',
                   'end_month'          => 'int',
                   'end_year'           => 'int',
-                  'all_day'            => 'string',  // bool, actually
+                  'all_day'            => 'string',  // bool, actually                 
                   'type'               => 'string',
                   'rooms'              => 'array',
                   'original_room_id'   => 'int',
@@ -378,26 +378,30 @@ foreach ($maxlength as $key => $length)
 
 // When All Day is checked, $start_seconds and $end_seconds are disabled and so won't
 // get passed through by the form.   We therefore need to set them.
-if (!empty($all_day))
-{
-  if ($enable_periods)
-  {
-    $start_seconds = 12 * SECONDS_PER_HOUR;
-    // This is actually the start of the last period, which is what the form would
-    // have returned.   It will get corrected in a moment.
-    $end_seconds = $start_seconds + ((count($periods) - 1) * 60);
-  }
-  else
-  {
-    $start_seconds = (($morningstarts * 60) + $morningstarts_minutes) * 60;
-    $end_seconds = (($eveningends * 60) + $eveningends_minutes) *60;
-    $end_seconds += $resolution;  // We want the end of the last slot, not the beginning
-    if (day_past_midnight())
+// 有勾 整天 就執行下面
+if (!empty($all_day)){  
+  //if ($all_day == '整天'){
+    if ($enable_periods)
     {
-      $end_seconds += SECONDS_PER_DAY;
+      $start_seconds = 12 * SECONDS_PER_HOUR;
+      // This is actually the start of the last period, which is what the form would
+      // have returned.   It will get corrected in a moment.
+      $end_seconds = $start_seconds + ((count($periods) - 1) * 60);
     }
-  }
+    else
+    {
+      $start_seconds = (($morningstarts * 60) + $morningstarts_minutes) * 60;
+      $end_seconds = (($eveningends * 60) + $eveningends_minutes) *60;
+      $end_seconds += $resolution;  // We want the end of the last slot, not the beginning
+      if (day_past_midnight())
+      {
+        $end_seconds += SECONDS_PER_DAY;
+      }
+    }
+  //}
 }
+return;
+// 加入早上、下午、晚上的時段
 
 // If we're operating on a booking day that stretches past midnight, it's more convenient
 // for the sections past midnight to be shown as being on the day before.  That way the
@@ -780,6 +784,7 @@ if ($ajax && function_exists('json_encode'))
 }
 
 // Everything was OK.   Go back to where we came from
+
 if ($result['valid_booking'])
 {
   header("Location: $returl");

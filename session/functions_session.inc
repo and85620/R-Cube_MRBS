@@ -102,7 +102,7 @@ function print_unknown_user()
   echo $html;
 }
 
-
+// 登入 button
 function print_logon_button($target_url)
 {
   $form = new Form();
@@ -116,11 +116,13 @@ function print_logon_button($target_url)
   
   // The submit button
   $element = new ElementInputSubmit();
+  
   $element->setAttribute('value', get_vocab('login'));
   $form->addElement($element);
-  
+  // 登入的 button
   $form->render();
 }
+
 
 
 function print_logoff_button($target_url)

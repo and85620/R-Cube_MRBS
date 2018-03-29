@@ -830,6 +830,7 @@ function generate_checkbox($params)
   
   // generate the HTML
   // no HTML escaping for the label - it is trusted
+  // for 標籤 : 點擊選項 "的字" 也會綁定按鈕
   $html  = "<label for=\"" . $params['id'] . "\"";
   $html .= (empty($params['label_title'])) ? '' : ' title="' . htmlspecialchars($params['label_title']) . '"';
   $html .= ($params['label_after']) ? ' class="secondary no_suffix"' : '';

@@ -191,9 +191,9 @@ function print_nav($day, $month, $year, $area, $room, $search_str=null, $simple=
   
   if (!$simple)
   {
-    echo "<li>\n";
+    /*echo "<li>\n";
     print_goto_date($day, $month, $year, $area, $room);
-    echo "</li>\n";
+    echo "</li>\n";*/
     
     echo "<li>\n";
     print_help($query_string);
@@ -207,17 +207,23 @@ function print_nav($day, $month, $year, $area, $room, $search_str=null, $simple=
     print_report($query_string);
     echo "</li>\n";
     
-    echo "<li>\n";
+    /*echo "<li>\n";
     print_search($day, $month, $year, $area, $room, $search_str);
-    echo "</li>\n";
+    echo "</li>\n";*/
     
     // For session protocols that define their own logon box...
+    // 使用 session_php.inc 的 print_logon_box
     if (function_exists(__NAMESPACE__ . "\\print_logon_box"))
     {
       echo "<li id=\"logon_box\">\n";
       print_logon_box();
       echo "</li>\n";
     }
+
+    echo "<li>\n";
+    echo "<a href=\"register.php?$query_string\">" . get_vocab("register") . "</a>\n";
+    echo "</li>\n";
+
   }
   
   echo "</ul>\n";
