@@ -527,6 +527,33 @@ function create_field_entry_confirmation_status($disabled=FALSE)
   }
 }
 
+function create_already_file()
+{
+  global $id;
+  if(is_dir("./upload/" . $id)){
+    $filepath = glob("./upload/" . $id . "/*.*");
+    $file = explode('/',$filepath[0]);
+    echo "<div id=\"div_already_file\">\n";
+    echo "<label >" . "已上傳檔案" . "</label>";
+    echo '<a href="download_sf2.php?file='.$id.'/'.$file[3].'" target="_blank">下載'.$file[3].'檔案</a>';
+    //echo "<input  type=\"text\" name\"filed\" id=\"filed\" disabled value=\"".$file[3]."\" >";
+    echo "</div>\n";
+  } else {
+    echo "<div id=\"div_already_file\">\n";
+    echo "<label >" . "已上傳檔案" . "</label>";
+    echo "<input  type=\"text\" name\"filed\" id=\"filed\" disabled value= \"無\" >";
+    echo "</div>\n";
+  }
+}
+
+
+function create_field_fileupload()
+{
+  echo "<div id=\"div_fileupload\">\n";
+  echo "<label for=\"file\">" . "Filename" . "</label>\n";
+  echo "<input type=\"file\" name=\"file\" id=\"file\"/>\n";
+  echo "</div>\n";
+}
 
 function create_field_entry_privacy_status($disabled=FALSE)
 {
@@ -1158,7 +1185,7 @@ else
 }
 
 
-echo "<form class=\"form_general\" id=\"main\" action=\"edit_entry_handler.php\" method=\"post\">\n";
+echo "<form class=\"form_general\" id=\"main\" action=\"edit_entry_handler.php\" method=\"post\" enctype=\"multipart/form-data\">\n";
 echo Form::getTokenHTML() . "\n";
 echo "<fieldset>\n";
 echo "<legend>" . get_vocab($token) . "</legend>\n";
@@ -1210,6 +1237,11 @@ foreach ($edit_entry_field_order as $key)
   }
 }
 
+if (isset($id))
+{
+  create_already_file();
+}
+create_field_fileupload();
 
 // Show the repeat fields if (a) it's a new booking and repeats are allowed,
 // or else if it's an existing booking and it's a series.  (It's not particularly obvious but
