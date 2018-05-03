@@ -218,6 +218,14 @@ function print_nav($day, $month, $year, $area, $room, $search_str=null, $simple=
       print_logon_box();
       echo "</li>\n";
     }
+
+    echo "<li>\n"; 
+    echo "<a href=\"test.php\">" . test . "</a>\n"; 
+    echo "</li>\n"; 
+
+    echo "<li>\n"; 
+    echo "<a href=\"test2.php\">" . test2 . "</a>\n"; 
+    echo "</li>\n"; 
   }
   
   echo "</ul>\n";

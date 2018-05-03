@@ -2075,6 +2075,36 @@ function mrbsMakeBookings($bookings, $id=NULL, $just_check=FALSE, $skip=FALSE, $
       $result['start_times'] = array($booking['start_time']);
     }
     $new_details[] = array('id' => $new_id, 'room_id' => $booking['room_id']);
+    
+    // file upload
+    // if upload new file
+    if ($_FILES["file"]["name"]!=NULL){
+      if ($_FILES["file"]["error"] > 0 )
+      {
+        echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
+        }
+      else 
+      {
+        $dirname = "./upload/".$new_details[0]['id'];
+        mkdir($dirname, 0777);
+        if (file_exists("./upload/".$new_details[0]['id'] . "/" . $_FILES["file"]["name"]))
+        {
+          echo $_FILES["file"]["name"] . " already exists. ";
+        }
+        else
+        {
+          move_uploaded_file($_FILES["file"]["tmp_name"], "./upload/".$new_details[0]['id'] . "/" . $_FILES["file"]["name"]);
+          $filename = "./upload/" . $_FILES["file"]["name"];
+          chmod($filename, 0777);
+        }
+      }
+    } else if (isset($id)) {
+      rename ("./upload/".$id, "./upload/".$new_details[0]['id']);
+    }
+    /*$file = fopen("./try.txt","w");
+    fwrite($file,$new_details[0]['id']);
+    fclose($file);*/  
+
     $booking['id'] = $new_id;  // Add in the id now we know it
     
     // Send an email if neccessary, provided that the entry creation was successful
@@ -2125,7 +2155,7 @@ function mrbsMakeBookings($bookings, $id=NULL, $just_check=FALSE, $skip=FALSE, $
       
   $result['new_details'] = $new_details;
   $result['slots'] = intval(($common['end_time'] - $common['start_time'])/$resolution);
-
+    
   return $result;
 }
 

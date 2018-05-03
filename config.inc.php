@@ -1,6 +1,6 @@
 <?php // -*-mode: PHP; coding:utf-8;-*-
 namespace MRBS;
-
+require_once('env.php');
 /**************************************************************************
  *   MRBS Configuration File
  *   Configure this file for your site.
@@ -17,7 +17,7 @@ namespace MRBS;
 /**********
  * Timezone
  **********/
- 
+
 // The timezone your meeting rooms run in. It is especially important
 // to set this if you're using PHP 5 on Linux. In this configuration
 // if you don't, meetings in a different DST than you are currently
@@ -49,15 +49,15 @@ $db_host = "localhost";
 // can uncomment the following line and specify the port number
 // $db_port = 1234;
 // Database name:
-$db_database = "MRBS";
+$db_database = $env_database;
 // Schema name.  This only applies to PostgreSQL and is only necessary if you have more
 // than one schema in your database and also you are using the same MRBS table names in
 // multiple schemas.
 //$db_schema = "public";
 // Database login user name:
-$db_login = "and85620";
+$db_login = $env_username;
 // Database login password:
-$db_password = "zcd123574";
+$db_password = $env_password;
 // Prefix for table names.  This will allow multiple installations where only
 // one database is available
 $db_tbl_prefix = "mrbs_";
