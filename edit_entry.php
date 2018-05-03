@@ -313,8 +313,8 @@ function create_field_entry_start_date($disabled=FALSE)
   // Generate the templates for each area
   foreach ($areas as $a)
   {
-    genSlotSelector($a, 'start_seconds' . $a['id'], 'start_seconds', $current_s, TRUE, FALSE, TRUE);
-    genAllDay($a, 'all_day' . $a['id'], 'all_day', FALSE, FALSE);
+    genSlotSelector($a, 'start_seconds' . $a['id'], 'start_seconds', $current_s, TRUE, TRUE, TRUE);
+    genAllDay($a, 'all_day' . $a['id'], 'all_day', TRUE,TRUE);
     //genMorning($areas[$area_id], 'all_day', 'all_day', FALSE, FALSE);
   }
   echo "</div>\n";

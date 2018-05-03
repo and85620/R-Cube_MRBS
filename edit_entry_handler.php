@@ -343,7 +343,6 @@ if ($ajax && $commit)
   }
 }
 
-
 // Truncate any fields that have a maximum length as a precaution.
 // Although the MAXLENGTH attribute is used in the <input> tag, this can
 // sometimes be ignored by the browser, for example by Firefox when 
@@ -400,7 +399,6 @@ if (!empty($all_day)){
     }
   //}
 }
-return;
 // 加入早上、下午、晚上的時段
 
 // If we're operating on a booking day that stretches past midnight, it's more convenient
@@ -883,4 +881,3 @@ if (empty($result['violations']['errors'])  &&
 echo "</div>\n";
 
 output_trailer();
-
