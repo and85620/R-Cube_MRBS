@@ -40,8 +40,10 @@ $vocab["addentry"]           = "新增";
 $vocab["editentry"]          = "修改";
 $vocab["editseries"]         = "整批修改";
 $vocab["namebooker"]         = "預約人姓名";
-$vocab["fulldescription"]    = "說明";
+$vocab["fulldescription"]    = "活動簡介";
 $vocab["date"]               = "日期";
+$vocab["start"]              = "開始日期";
+$vocab["end"]                = "結束日期";
 $vocab["start_date"]         = "起始時間";
 $vocab["end_date"]           = "結束時間";
 $vocab["time"]               = "時間";
@@ -114,6 +116,7 @@ $vocab["delete_user"]        = "刪除使用者";
 //$vocab["users.name"]         = Use the same as above, for consistency.
 //$vocab["users.password"]     = Use the same as above, for consistency.
 $vocab["users.email"]         = "Email address";
+$vocab["users.timestamp"]    = "最近登入";
 $vocab["password_twice"]     = "If you wish to change the password, please type the new password twice";
 $vocab["passwords_not_eq"]   = "Error: The passwords do not match.";
 $vocab["add_new_user"]       = "新增使用者";
@@ -201,6 +204,13 @@ $vocab["room_admin_email"]   = "會議室管理者email";
 $vocab["area_admin_email"]   = "區域管理者email";
 $vocab["invalid_email"]      = "不合法的email!";
 
+// Used in edit_users.php
+$vocab["name_empty"]         = "請輸入一個名稱";
+$vocab["email_empty"]         = "請輸入信箱";
+$vocab["phone_empty"]         = "請輸入聯絡電話";
+$vocab["name_not_unique"]    = "該名稱已被使用";
+
+
 // Used in del.php
 $vocab["deletefollowing"]    = "這個動作會刪除相關的預約紀錄";
 $vocab["sure"]               = "確定嗎?";
@@ -216,6 +226,10 @@ $vocab["please_contact"]     = "請聯絡";
 $vocab["for_any_questions"]  = ",關於任何在這裡找不到答案的問題.";
 
 // Entry types
-$vocab["type.I"]             = "內部使用";
-$vocab["type.E"]             = "外部使用";
-
+$vocab["type.I"]             = "私人";
+$vocab["type.E"]             = "公開";
+$vocab["register"]           = "註冊";
+$vocab["users.phone"]        = "聯絡電話";
+$vocab["users.group"]        = "申請單位/社區/工作坊";
+$vocab["morning"]            = "早上";
+//$vocab["all_day"]            = "整天";

@@ -246,7 +246,8 @@ if ($ajax)
 
 // Get the information about the fields in the users table
 $fields = db()->field_info($tbl_users);
-
+// $fields => 
+// id, email, name, password-hash, level, timestamp
 $nusers = db()->query1("SELECT COUNT(*) FROM $tbl_users");
 
 /*---------------------------------------------------------------------------*\
@@ -420,8 +421,19 @@ if (isset($Action) && ( ($Action == "Edit") or ($Action == "Add") ))
                   case 'email':
                     $params['type'] = 'email';
                     $params['attributes'] = 'multiple';
+                    $params['mandatory'] = TRUE;
                     generate_input($params);
                     break;
+                  case 'phone':
+                    $params['mandatory'] = TRUE;
+                    $params['attributes'] = array('rows="1"', 'cols="20"');
+                    generate_textarea($params);
+                    break;
+                  case 'group':
+                    $params['mandatory'] = TRUE;
+                    $params['attributes'] = array('rows="1"', 'cols="20"');
+                    generate_textarea($params);
+                  break;
                   default:    
                     // Output a checkbox if it's a boolean or integer <= 2 bytes (which we will
                     // assume are intended to be booleans)
@@ -479,7 +491,7 @@ if (isset($Action) && ( ($Action == "Edit") or ($Action == "Add") ))
           {
             print "<div>\n";
             print "<label for=\"password$i\">" . get_vocab("users.password") . "</label>\n";
-            print "<input type=\"password\" id=\"password$i\" name=\"password$i\" value=\"\">\n";
+            print "<input type=\"password\" required id=\"password$i\" name=\"password$i\" value=\"\">\n";
             print "</div>\n";
           }
           
@@ -848,6 +860,8 @@ if (isset($Action) && ($Action == "Delete"))
 
 /* Print the standard MRBS header */
 
+
+// 管理員 新增使用者按鈕
 if (!$ajax)
 {
   print_header();
@@ -898,6 +912,8 @@ if ($initial_user_creation != 1)   // don't print the user table if there are no
         // We give some columns a type data value so that the JavaScript knows how to sort them
         switch ($fieldname)
         {
+          case 'group':
+          case 'phone':
           case 'level':
           case 'timestamp':
             $heading = '<span class="normal" data-type="title-numeric">' . $heading . '</span>';
@@ -908,7 +924,6 @@ if ($initial_user_creation != 1)   // don't print the user table if there are no
         echo "<th>$heading</th>";
       }
     }
-  
     echo "</tr>\n";
     echo "</thead>\n";
   

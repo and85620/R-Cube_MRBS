@@ -127,6 +127,8 @@ function getbookingdate($t, $is_end=FALSE)
 //                                that $display_none is FALSE.  (This prevents multiple inputs
 //                                of the same name)
 //    $is_start                   Boolean.  Whether this is the start selector.  Default FALSE
+// $display_none=FALSE 表示出現在畫面
+// $disabled=FALSE 表示下拉可以用
 function genSlotSelector($area, $id, $name, $current_s, $display_none=FALSE, $disabled=FALSE, $is_start=FALSE)
 {
   $html = '';
@@ -240,8 +242,9 @@ function genAllDay($a, $input_id, $input_name, $display_none=FALSE, $disabled=FA
 
 function create_field_entry_name($disabled=FALSE)
 {
+  $user = getUserName();
   global $name, $maxlength, $is_mandatory_field;
-
+  // $name = $user;
   echo "<div id=\"div_name\">\n";
 
   // 'mandatory' is there to prevent null input (pattern doesn't seem to be triggered until
@@ -261,7 +264,6 @@ function create_field_entry_name($disabled=FALSE)
   echo "</div>\n";
 }
 
-
 function create_field_entry_description($disabled=FALSE)
 {
   global $description, $select_options, $datalist_options, $is_mandatory_field, $maxlength;
@@ -279,6 +281,7 @@ function create_field_entry_description($disabled=FALSE)
       isset($datalist_options['entry.description']) )
   {
     $params['field'] = 'entry.description';
+    $params['attributes'] = array('rows="8"', 'cols="40"');
     generate_input($params);
   }
   else
@@ -310,8 +313,9 @@ function create_field_entry_start_date($disabled=FALSE)
   // Generate the templates for each area
   foreach ($areas as $a)
   {
-    genSlotSelector($a, 'start_seconds' . $a['id'], 'start_seconds', $current_s, TRUE, TRUE, TRUE);
-    genAllDay($a, 'all_day' . $a['id'], 'all_day', TRUE, TRUE);
+    genSlotSelector($a, 'start_seconds' . $a['id'], 'start_seconds', $current_s, TRUE, FALSE, TRUE);
+    genAllDay($a, 'all_day' . $a['id'], 'all_day', FALSE, FALSE);
+    //genMorning($areas[$area_id], 'all_day', 'all_day', FALSE, FALSE);
   }
   echo "</div>\n";
 }
@@ -343,7 +347,7 @@ function create_field_entry_end_date($disabled=FALSE)
   foreach ($areas as $a)
   {
     $this_current_s = ($a['enable_periods']) ? $current_s - $a['resolution'] : $current_s;
-    genSlotSelector($a, 'end_seconds' . $a['id'], 'end_seconds', $this_current_s, TRUE, TRUE);
+    genSlotSelector($a, 'end_seconds' . $a['id'], 'end_seconds', $this_current_s, TRUE, FALSE);
   }
 
   echo "<span id=\"end_time_error\" class=\"error\"></span>\n";
@@ -504,10 +508,14 @@ function create_field_entry_type($disabled=FALSE)
 
 function create_field_entry_confirmation_status($disabled=FALSE)
 {
+    $user = getUserName();
+    $level = authGetUserLevel($user);
+    // Check the user is authorised for this page
+    checkAuthorised();
   global $confirmation_enabled, $confirmed;
 
   // Confirmation status
-  if ($confirmation_enabled)
+  if ($confirmation_enabled && $level == 2)
   {
     echo "<div id=\"div_confirmation_status\">\n";
 
@@ -521,6 +529,23 @@ function create_field_entry_confirmation_status($disabled=FALSE)
                     'force_assoc' => TRUE,
                     'disabled'    => $disabled);
 
+    generate_radio_group($params);
+
+    echo "</div>\n";
+  } else if ($confirmation_enabled)
+  {
+    echo "<div style=\"display:none\" id=\"div_confirmation_status\">\n";
+    
+    $buttons[0] = get_vocab("confirmed");
+    $buttons[1] = get_vocab("tentative");
+    
+    $params = array('label'       => get_vocab("confirmation_status"),
+                    'name'        => 'confirmed',
+                    'value'       => ($confirmed) ? 0 : 1,
+                    'options'     => $buttons,
+                    'force_assoc' => TRUE,
+                    'disabled'    => $disabled);
+                    
     generate_radio_group($params);
 
     echo "</div>\n";
@@ -726,6 +751,8 @@ if (!isset($returl))
 // and if it's a modification we need to get all the old data from the db.
 // If we had $id passed in then it's a modification.
 
+
+// 修改紀錄
 if (isset($id))
 {
   $entry = get_entry_by_id($id);
@@ -921,6 +948,7 @@ if (isset($id))
     }
   }
 }
+// 新的租借
 else
 {
   // It is a new booking. The data comes from whichever button the user clicked
@@ -1269,7 +1297,7 @@ if (($edit_type == "series") && $repeats_allowed)
                   'disabled'      => $disabled,
                   'options'       => array(),
                   'force_assoc'   => TRUE);
-  foreach (array(REP_NONE, REP_DAILY, REP_WEEKLY, REP_MONTHLY, REP_YEARLY) as $i)
+  foreach (array(REP_NONE, REP_WEEKLY, REP_MONTHLY) as $i)
   {
     $params['options'][$i] = get_vocab("rep_type_$i");
   }
@@ -1407,7 +1435,7 @@ if (($edit_type == "series") && $repeats_allowed)
     // Checkbox for skipping past conflicts
     if (!$disabled)
     {
-      echo "<div>\n";
+      echo "<div style=\"display:none\">\n";
       $params = array('label' => get_vocab("skip_conflicts"),
                       'name' => 'skip',
                       'value' => !empty($skip_default));

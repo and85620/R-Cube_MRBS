@@ -161,7 +161,7 @@ function checkTimeSlots(jqDate)
 <?php
 // Executed when the user clicks on the all_day checkbox.
 ?>
-function onAllDayClick()
+function onTimeClick()
 {
   var form = $('#main');
   if (form.length === 0)
@@ -186,29 +186,29 @@ function onAllDayClick()
     ?>
     firstSlot = parseInt(startSelect.find('option').first().val(), 10);
     lastSlot = parseInt(endSelect.find('option').last().val(), 10);
-    onAllDayClick.oldStart = parseInt(startSelect.val(), 10);
-    onAllDayClick.oldStartDatepicker = startDatepicker.datepicker('getDate');
+    onTimeClick.oldStart = parseInt(startSelect.val(), 10);
+    onTimeClick.oldStartDatepicker = startDatepicker.datepicker('getDate');
     startSelect.val(firstSlot);
     startSelect.prop('disabled', true);
-    onAllDayClick.oldEnd = parseInt(endSelect.val(), 10);
-    onAllDayClick.oldEndDatepicker = endDatepicker.datepicker('getDate');
+    onTimeClick.oldEnd = parseInt(endSelect.val(), 10);
+    onTimeClick.oldEndDatepicker = endDatepicker.datepicker('getDate');
     endSelect.val(lastSlot);
     if ((lastSlot < firstSlot) && 
-        (onAllDayClick.oldStartDatepicker === onAllDayClick.oldEndDatepicker))
+        (onTimeClick.oldStartDatepicker === onTimeClick.oldEndDatepicker))
     {
       <?php
       // If the booking day spans midnight then the first and last slots
       // are going to be on different days
       ?>
-      if (onAllDayClick.oldStart < firstSlot)
+      if (onTimeClick.oldStart < firstSlot)
       {
-        date = new Date(onAllDayClick.oldStartDatepicker);
+        date = new Date(onTimeClick.oldStartDatepicker);
         date.setDate(date.getDate() - 1);
         startDatepicker.datepicker('setDate', date);
       }
       else
       {
-        date = new Date(onAllDayClick.oldEndDatepicker);
+        date = new Date(onTimeClick.oldEndDatepicker);
         date.setDate(date.getDate() + 1);
         endDatepicker.datepicker('setDate', date);
       }
@@ -217,11 +217,11 @@ function onAllDayClick()
   }
   else  <?php // restore the old values and re-enable the inputs ?>
   {
-    startSelect.val(onAllDayClick.oldStart);
-    startDatepicker.datepicker('setDate', onAllDayClick.oldStartDatepicker);
+    startSelect.val(onTimeClick.oldStart);
+    startDatepicker.datepicker('setDate', onTimeClick.oldStartDatepicker);
     startSelect.prop('disabled', false);
-    endSelect.val(onAllDayClick.oldEnd);
-    endDatepicker.datepicker('setDate', onAllDayClick.oldEndDatepicker);
+    endSelect.val(onTimeClick.oldEnd);
+    endDatepicker.datepicker('setDate', onTimeClick.oldEndDatepicker);
     endSelect.prop('disabled', false);
   }
 
@@ -1209,7 +1209,7 @@ init = function(args) {
         });
         
   $('input[name="all_day"]').click(function() {
-      onAllDayClick();
+      onTimeClick();
     });
     
   <?php
@@ -1246,10 +1246,10 @@ init = function(args) {
     allDay.attr('checked', 'checked');
     startSelect.prop('disabled', true);
     endSelect.prop('disabled', true);
-    onAllDayClick.oldStart = startSelect.val();
-    onAllDayClick.oldEnd = endSelect.val();
-    onAllDayClick.oldStartDatepicker = form.find('#start_datepicker').datepicker('getDate');
-    onAllDayClick.oldEndDatepicker = form.find('#end_datepicker').datepicker('getDate');
+    onTimeClick.oldStart = startSelect.val();
+    onTimeClick.oldEnd = endSelect.val();
+    onTimeClick.oldStartDatepicker = form.find('#start_datepicker').datepicker('getDate');
+    onTimeClick.oldEndDatepicker = form.find('#end_datepicker').datepicker('getDate');
   }
 
 
