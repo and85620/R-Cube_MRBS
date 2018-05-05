@@ -242,9 +242,7 @@ function genAllDay($a, $input_id, $input_name, $display_none=FALSE, $disabled=FA
 
 function create_field_entry_name($disabled=FALSE)
 {
-  $user = getUserName();
   global $name, $maxlength, $is_mandatory_field;
-  // $name = $user;
   echo "<div id=\"div_name\">\n";
 
   // 'mandatory' is there to prevent null input (pattern doesn't seem to be triggered until
@@ -255,7 +253,7 @@ function create_field_entry_name($disabled=FALSE)
                   'value'      => $name,
                   'type'       => 'text',
                   'pattern'    => REGEX_TEXT_POS,
-                  'disabled'   => $disabled,
+                  'disabled'   => TRUE,
                   'mandatory'  => TRUE,
                   'maxlength'  => $maxlength['entry.name']);
 
@@ -536,12 +534,12 @@ function create_field_entry_confirmation_status($disabled=FALSE)
   {
     echo "<div style=\"display:none\" id=\"div_confirmation_status\">\n";
     
-    $buttons[0] = get_vocab("confirmed");
-    $buttons[1] = get_vocab("tentative");
+    $buttons[0] = get_vocab("tentative");
+    $buttons[1] = get_vocab("confirmed");
     
     $params = array('label'       => get_vocab("confirmation_status"),
                     'name'        => 'confirmed',
-                    'value'       => ($confirmed) ? 0 : 1,
+                    'value'       => ($confirmed) ? 1 : 0,
                     'options'     => $buttons,
                     'force_assoc' => TRUE,
                     'disabled'    => $disabled);
@@ -953,7 +951,7 @@ else
 {
   // It is a new booking. The data comes from whichever button the user clicked
   $edit_type     = "series";
-  $name          = "";
+  $name          = getUserName();
   $create_by     = $user;
   $description   = $default_description;
   $type          = (empty($is_mandatory_field['entry.type'])) ? $default_type : '';
