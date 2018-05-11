@@ -57,7 +57,8 @@ $fields = db()->field_info($tbl_entry);
 $custom_fields = array();
 
 // Fill $edit_entry_field_order with not yet specified entries.
-$entry_fields = array('name', 'description', 'start_date', 'end_date', 'areas',
+// participant 增加該欄位 => 參與者 ＆ 估計人數
+$entry_fields = array('name', 'description', 'participant', 'start_date', 'end_date', 'areas',
                       'rooms', 'type', 'confirmation_status', 'privacy_status');
 
 foreach ($entry_fields as $field)
@@ -287,6 +288,27 @@ function create_field_entry_description($disabled=FALSE)
     $params['attributes'] = array('rows="8"', 'cols="40"');
     generate_textarea($params);
   }
+  echo "</div>\n";
+}
+
+// 參與者欄位
+function create_field_entry_participant($disabled=FALSE)
+{
+  global $participant, $maxlength, $is_mandatory_field;
+  echo "<div id=\"div_participant\">\n";
+
+  // 'mandatory' is there to prevent null input (pattern doesn't seem to be triggered until
+  // there is something there).
+  $params = array('label'      => "參與者;預估人數",
+                  'name'       => 'participant',
+                  'value'      => $participant,
+                  'disabled'   => FALSE,
+                  'mandatory'  => TRUE,
+                  'maxlength'  => $maxlength['entry.participant']);
+  $params['attributes'] = array('rows="8"', 'cols="40"', 'style="margin: 0px 0px 6.5px 13px; width: 260px; height: 53px;"');
+
+  generate_textarea($params);
+
   echo "</div>\n";
 }
 
@@ -554,11 +576,12 @@ function create_already_file()
 {
   global $id;
   if(is_dir("./upload/" . $id)){
-    $filepath = glob("./upload/" . $id . "/*.*");
+    $filepath = glob("./upload/" . $id . "/*");
     $file = explode('/',$filepath[0]);
     echo "<div id=\"div_already_file\">\n";
     echo "<label >" . "已上傳檔案" . "</label>";
-    echo '<a href="download_sf2.php?file='.$id.'/'.$file[3].'" target="_blank">下載'.$file[3].'檔案</a>';
+    print_r($filepath);
+    echo '<a href="download_sf2.php?file='.$id.'/'.$file[3].'" target="_blank">'.$file[3].'(<-點我下載)</a>';
     //echo "<input  type=\"text\" name\"filed\" id=\"filed\" disabled value=\"".$file[3]."\" >";
     echo "</div>\n";
   } else {
@@ -573,7 +596,7 @@ function create_already_file()
 function create_field_fileupload()
 {
   echo "<div id=\"div_fileupload\">\n";
-  echo "<label for=\"file\">" . "Filename" . "</label>\n";
+  echo "<label for=\"file\">" . "檔案上傳" . "</label>\n";
   echo "<input type=\"file\" name=\"file\" id=\"file\"/>\n";
   echo "</div>\n";
 }
@@ -951,7 +974,14 @@ else
 {
   // It is a new booking. The data comes from whichever button the user clicked
   $edit_type     = "series";
-  $name          = getUserName();
+    // 取目前使用者與所屬單位
+    global $tbl_users;
+    $username = getUserName();
+    $sql = "SELECT * FROM $tbl_users WHERE name = ? LIMIT 1";
+    $res = db()->query($sql,array($username));
+    $row = $res->row_keyed(0);
+    $group = $row['group'];
+  $name          = $username." ( ".$group." )";
   $create_by     = $user;
   $description   = $default_description;
   $type          = (empty($is_mandatory_field['entry.type'])) ? $default_type : '';
@@ -1227,6 +1257,10 @@ foreach ($edit_entry_field_order as $key)
 
   case 'description':
     create_field_entry_description();
+    break;
+
+  case 'participant':
+    create_field_entry_participant();
     break;
 
   case 'start_date':
