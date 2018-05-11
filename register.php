@@ -281,7 +281,12 @@ if (isset($Action) && ($Action == "Add")) {
                 // Don't show timestamp in the form at all
                 break;
               default:
-                echo "<div>\n";
+                if ($key == 'level') {
+                  echo "<div hidden>\n";
+                } else {
+                  echo "<div >\n";
+                }
+                
                 $params['disabled'] = ($level < $min_user_editing_level) && in_array($key, $auth['db']['protected_fields']);
                 switch($key)
                 {
@@ -310,6 +315,8 @@ if (isset($Action) && ($Action == "Add")) {
                       }
                     }
                     $params['force_assoc'] = TRUE;
+                    $attributes[] = 'style="display: none"';
+                    $params['attributes'] = $attributes;                    
                     generate_select($params);
                     break;
                   case 'name':
@@ -385,15 +392,16 @@ if (isset($Action) && ($Action == "Add")) {
                      
           } // end foreach
       
-          print "<div><p>" . get_vocab("password_twice") . "...</p></div>\n";
+          print "<div><p>==========================================</p></div>\n";
 
-          for ($i=0; $i<2; $i++)
-          {
-            print "<div>\n";
-            print "<label for=\"password$i\">" . get_vocab("users.password") . "</label>\n";
-            print "<input type=\"password\" required id=\"password$i\" name=\"password$i\" value=\"\">\n";
-            print "</div>\n";
-          }
+          print "<div>\n";
+          print "<label for=\"password0\">" . get_vocab("users.password") . "</label>\n";
+          print "<input type=\"password\" required id=\"password0\" name=\"password0\" value=\"\">\n";
+          print "</div>\n";
+          print "<div>\n";
+          print "<label for=\"password1\">" . "確認密碼" . "</label>\n";
+          print "<input type=\"password\" required id=\"password1\" name=\"password1\" value=\"\">\n";
+          print "</div>\n";
           
           // Now do any password error messages
           if (!empty($pwd_not_match))
@@ -638,5 +646,8 @@ if (isset($Action) && ($Action == "Add")) {
       db()->command($operation, $sql_params);
     
       /* Success. Redirect to the user list, to remove the form args */
-      header("Location: index.php");
+      echo "<script>alert('註冊成功，可以登入囉'); window.location = './index.php';</script>";
+      // header("Location: index.php");
+
+      
   }
