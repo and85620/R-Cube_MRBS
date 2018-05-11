@@ -349,16 +349,9 @@ function month_table_innerhtml($day, $month, $year, $room, $area)
           /*
           月曆上的訂單時間 + 人名 + 單位
           */
-          //$user = getUserName(); <- 沒用的一行
-          global $tbl_users;
-          $sql = "SELECT * FROM $tbl_users WHERE name = ? LIMIT 1";
-          $res = db()->query($sql,array($description_text));
-          $row = $res->row_keyed(0);
-          $group = $row['group'];
-
           $html .= "<a href=\"$booking_link\" title=\"$full_text\">";
           $html .= ($d[$cday]['is_repeat'][$i]) ? "<img class=\"repeat_symbol\" src=\"images/repeat.png\" alt=\"" . get_vocab("series") . "\" title=\"" . get_vocab("series") . "\" width=\"10\" height=\"10\">" : '';
-          $html .= "$display_text"." ( ".$group." )</a>\n";
+          $html .= "$display_text"."</a>\n";
           $html .= "</div>\n";
         }
         $html .= "</div>\n";
