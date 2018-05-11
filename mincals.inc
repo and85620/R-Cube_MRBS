@@ -348,10 +348,10 @@ $cal = new Calendar(date("d",$lastmonth), date("m",$lastmonth), date("Y",$lastmo
 echo $cal->getHTML();
 echo "</div>\n";*/
 
-echo "<div id=\"cal_this\">\n";
+/*echo "<div id=\"cal_this\">\n";
 $cal = new Calendar(date("d",$thismonth), date("m",$thismonth), date("Y",$thismonth), 1, $area, $room, $dmy);
 echo $cal->getHTML();
-echo "</div>\n";
+echo "</div>\n";*/
 
 /*echo "<div id=\"cal_next\">\n";
 $cal = new Calendar(date("d",$nextmonth), date("m",$nextmonth), date("Y",$nextmonth), 0, $area, $room, $dmy);
