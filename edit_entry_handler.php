@@ -399,7 +399,6 @@ if (!empty($all_day)){
     }
   //}
 }
-// 加入早上、下午、晚上的時段
 
 // If we're operating on a booking day that stretches past midnight, it's more convenient
 // for the sections past midnight to be shown as being on the day before.  That way the
@@ -737,6 +736,7 @@ db()->begin();
   
 $transaction_ok = true;
 
+// 確認租借成功
 $result = mrbsMakeBookings($bookings, $this_id, $just_check, $skip, $original_room_id, $send_mail, $edit_type);
 
 // If we weren't just checking and this was a succesful booking and
