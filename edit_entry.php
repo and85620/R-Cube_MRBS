@@ -59,7 +59,7 @@ $custom_fields = array();
 // Fill $edit_entry_field_order with not yet specified entries.
 // participant 增加該欄位 => 參與者 ＆ 估計人數
 $entry_fields = array('name', 'description', 'participant', 'start_date', 'end_date', 'areas',
-                      'rooms', 'type', 'confirmation_status', 'privacy_status');
+                      'rooms', 'type', 'privacy_status', 'confirmation_status');
 
 foreach ($entry_fields as $field)
 {
@@ -1283,12 +1283,12 @@ foreach ($edit_entry_field_order as $key)
     create_field_entry_type();
     break;
 
-  case 'confirmation_status':
-    create_field_entry_confirmation_status();
-    break;
-
   case 'privacy_status':
     create_field_entry_privacy_status();
+    break;
+
+  case 'confirmation_status':
+    create_field_entry_confirmation_status();
     break;
 
   default:
@@ -1318,7 +1318,7 @@ if (($edit_type == "series") && $repeats_allowed)
   // been demoted since the series was created).
   $disabled = ($edit_type != "series") || !$repeats_allowed;
 
-  echo "<fieldset id=\"rep_info\">\n";
+  echo "<fieldset id=\"rep_info\" style=\"display:none\">\n";
   echo "<legend></legend>\n";
 
   // Repeat type
