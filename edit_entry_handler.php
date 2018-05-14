@@ -62,6 +62,7 @@ $is_admin = (authGetUserLevel($user) >= 2);
 $formvars = array('create_by'          => 'string',
                   'name'               => 'string',
                   'description'        => 'string',
+                  'participant'        => 'string',
                   'start_seconds'      => 'int',
                   'start_day'          => 'int',
                   'start_month'        => 'int',
@@ -379,7 +380,6 @@ foreach ($maxlength as $key => $length)
 // get passed through by the form.   We therefore need to set them.
 // 有勾 整天 就執行下面
 if (!empty($all_day)){  
-  //if ($all_day == '整天'){
     if ($enable_periods)
     {
       $start_seconds = 12 * SECONDS_PER_HOUR;
@@ -397,7 +397,6 @@ if (!empty($all_day)){
         $end_seconds += SECONDS_PER_DAY;
       }
     }
-  //}
 }
 
 // If we're operating on a booking day that stretches past midnight, it's more convenient
@@ -663,6 +662,7 @@ foreach ($rooms as $room_id)
   $booking['name'] = $name;
   $booking['type'] = $type;
   $booking['description'] = $description;
+  $booking['participant'] = $participant;
   $booking['room_id'] = $room_id;
   $booking['start_time'] = $starttime;
   $booking['end_time'] = $endtime;
@@ -684,13 +684,12 @@ foreach ($rooms as $room_id)
       $booking['month_relative'] = $month_relative;
     }
   }
-
   // Do the custom fields
   foreach ($custom_fields as $key => $value)
   {
     $booking[$key] = $value;
   }
-
+  $booking['participant'] = $participant;
   // Set the various bits in the status field as appropriate
   // (Note: the status field is the only one that can differ by room)
   $status = 0;
