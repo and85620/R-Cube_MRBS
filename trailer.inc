@@ -56,6 +56,8 @@ function generate_trailer()
     $output .= "<div class=\"screenonly trailer\" id=\"trailer\">\n";
   
     // DAYS
+    /*
+    
     $output .= "<div id=\"viewday\">\n";
     $output .= "<div class=\"trailer_label\">\n";
     $output .= "<a href=\"day.php?year=$year&amp;month=$month&amp;day=$day$params\">" . 
@@ -165,7 +167,8 @@ function generate_trailer()
     $output .= "</div>\n";
   
     $output .= "</div>\n";
-  
+    
+    */
   
     // MONTHS
     $output .= "<div id=\"viewmonth\">\n";
