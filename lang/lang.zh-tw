@@ -237,3 +237,4 @@ $vocab["confirmed"]          = "已通過";
 $vocab["confirmation_status"] = "申請狀況";
 $vocab["tentative"]           = "申請中";
 $vocab["participant"]     = "參與對象和活動人數";
+$vocab["back"]           = "返回";
