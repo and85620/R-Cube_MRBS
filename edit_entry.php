@@ -59,7 +59,7 @@ $custom_fields = array();
 // Fill $edit_entry_field_order with not yet specified entries.
 // participant 增加該欄位 => 參與者 ＆ 估計人數
 $entry_fields = array('name', 'description', 'participant', 'start_date', 'end_date', 'areas',
-                      'rooms', 'type', 'privacy_status', 'confirmation_status');
+                      'rooms', 'type', 'privacy_status', 'confirmation_status', 'note');
 
 foreach ($entry_fields as $field)
 {
@@ -681,6 +681,32 @@ function create_field_entry_custom_field($field, $key, $disabled=FALSE)
   echo "</div>\n";
 }
 
+// 備註欄位
+function create_field_entry_note($disabled=FALSE)
+{
+  $user = getUserName();
+  $level = authGetUserLevel($user);
+  global $note, $maxlength, $is_mandatory_field;
+  if ($level == 2) {
+  echo "<div id=\"div_note\">\n";
+
+  // 'mandatory' is there to prevent null input (pattern doesn't seem to be triggered until
+  // there is something there).
+  $params = array('label'      => "備註",
+                  'name'       => 'note',
+                  'value'      => $note,
+                  'disabled'   => FALSE,
+                  'mandatory'  => FALSE,
+                  'maxlength'  => $maxlength['entry.note']);
+  $params['attributes'] = array('rows="8"', 'cols="40"', 'style="margin: 0px 0px 6.5px 13px; width: 260px; height: 53px;"');
+
+  generate_textarea($params);
+
+  echo "</div>\n";
+  }
+}
+
+
 
 // Get non-standard form variables
 $hour = get_form_var('hour', 'int');
@@ -1289,6 +1315,10 @@ foreach ($edit_entry_field_order as $key)
 
   case 'confirmation_status':
     create_field_entry_confirmation_status();
+    break;
+
+  case 'note':
+    create_field_entry_note();
     break;
 
   default:
