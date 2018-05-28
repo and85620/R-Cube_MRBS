@@ -299,7 +299,7 @@ function create_field_entry_participant($disabled=FALSE)
 
   // 'mandatory' is there to prevent null input (pattern doesn't seem to be triggered until
   // there is something there).
-  $params = array('label'      => "參與者;預估人數",
+  $params = array('label'      => "參與者/預估人數",
                   'name'       => 'participant',
                   'value'      => $participant,
                   'disabled'   => FALSE,
@@ -433,7 +433,7 @@ function create_field_entry_rooms($disabled=FALSE)
     $all_rooms[$row['area_id']][$row['id']] = $row['room_name'];
   }
 
-  echo "<div id=\"div_rooms\">\n";
+  echo "<div id=\"div_rooms\" style=\"display: none\">\n";
   echo "<label for=\"rooms\">" . get_vocab("rooms") . "</label>\n";
   echo "<div class=\"group\">\n";
 
@@ -501,7 +501,7 @@ function create_field_entry_type($disabled=FALSE)
 
   echo "<div id=\"div_type\">\n";
 
-  $params = array('label'       => get_vocab("type"),
+  $params = array('label'       => '活動類型',
                   'name'        => 'type',
                   'disabled'    => $disabled,
                   'mandatory'   => !empty($is_mandatory_field['entry.type']),
@@ -596,7 +596,7 @@ function create_already_file()
 function create_field_fileupload()
 {
   echo "<div id=\"div_fileupload\">\n";
-  echo "<label for=\"file\">" . "檔案上傳" . "</label>\n";
+  echo "<label for=\"file\">" . "活動企劃上傳" . "</label>\n";
   echo "<input type=\"file\" name=\"file\" id=\"file\"/>\n";
   echo "</div>\n";
 }
@@ -882,6 +882,8 @@ if (isset($id))
       // checked whether it makes sense/works to make the 'type' column private]
       case 'name':
       case 'description':
+      case 'participant':
+      case 'note':
       case 'type':
         $$column = ($keep_private && isset($is_private_field["entry.$column"]) && $is_private_field["entry.$column"]) ? '' : $entry[$column];
         break;
@@ -1572,10 +1574,10 @@ echo "</fieldset>\n";
     echo "</div>\n";
 
     // div to hold the results of the Ajax checking of the booking
-    echo "<div id=\"checks\">\n";
+    /*echo "<div id=\"checks\">\n";
     echo "<span id=\"conflict_check\"></span>\n";
     echo "<span id=\"policy_check\"></span>\n";
-    echo "</div>\n";
+    echo "</div>\n";*/
 
     echo "</fieldset>";
 
