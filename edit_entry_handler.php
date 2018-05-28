@@ -63,6 +63,7 @@ $formvars = array('create_by'          => 'string',
                   'name'               => 'string',
                   'description'        => 'string',
                   'participant'        => 'string',
+                  'note'               => 'string',
                   'start_seconds'      => 'int',
                   'start_day'          => 'int',
                   'start_month'        => 'int',
@@ -663,6 +664,7 @@ foreach ($rooms as $room_id)
   $booking['type'] = $type;
   $booking['description'] = $description;
   $booking['participant'] = $participant;
+  $booking['note'] = $note;
   $booking['room_id'] = $room_id;
   $booking['start_time'] = $starttime;
   $booking['end_time'] = $endtime;
@@ -690,6 +692,7 @@ foreach ($rooms as $room_id)
     $booking[$key] = $value;
   }
   $booking['participant'] = $participant;
+  $booking['note'] = $note;
   // Set the various bits in the status field as appropriate
   // (Note: the status field is the only one that can differ by room)
   $status = 0;
