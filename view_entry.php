@@ -544,7 +544,7 @@ if ($approval_enabled && !$room_disabled && ($status & STATUS_AWAITING_APPROVAL)
   }
   
   // Copy and Copy Series
-  echo "<div>\n";
+  /*echo "<div>\n";
   if (!$series)
   {
     echo "<div>\n";
@@ -571,7 +571,7 @@ if ($approval_enabled && !$room_disabled && ($status & STATUS_AWAITING_APPROVAL)
     echo "</div>\n";
   }
   echo "</div>\n";
-  
+  */
   // Export and Export Series
   if (!$keep_private && !$enable_periods)
   {
