@@ -155,8 +155,16 @@ function create_details_body($data, $as_html=false, $keep_private=false, $room_d
   $tbody .= create_details_row(get_vocab("modifiedby"), $data['modified_by'], $as_html, $class);
   // Last updated
   $tbody .= create_details_row(get_vocab("lastupdate"), time_date_string($data['last_updated']), $as_html);
+  // participant
+  $class = ($keep_private & !empty($is_private_field['entry.participant'])) ? "private" : "";
+  $tbody .= create_details_row(get_vocab("participant"), $data['participant'], $as_html, $class);
+  // note
+  $class = ($keep_private & !empty($is_private_field['entry.note'])) ? "private" : "";
+  $tbody .= create_details_row(get_vocab("note"), $data['note'], $as_html, $class);
   // The custom fields
+  
   $fields = db()->field_info($tbl_entry);
+  /*
   foreach ($fields as $field)
   {
     $key = $field['name'];
@@ -204,6 +212,7 @@ function create_details_body($data, $as_html=false, $keep_private=false, $room_d
       $tbody .= create_details_row($label, $value, $as_html, $class);
     }
   }
+  */
   // Repeat type
   $tbody .= create_details_row(get_vocab("rep_type"), get_vocab("rep_type_" . $data['rep_type']), $as_html);
   // Repeat details
