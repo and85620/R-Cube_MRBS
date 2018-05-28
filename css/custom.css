@@ -1,0 +1,52 @@
+#explainNavArea{
+    width: 100%;
+    text-align: center;
+}
+.explainNav {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #4b667b;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 300px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+.explainNav span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+.explainNav span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+  
+.explainNav:hover span {
+    padding-right: 25px;
+}
+  
+.explainNav:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+body{
+    font-size: medium;
+}
+#SystemInterview pre{
+    font-size: 15px;
+}
+#SystemInterview{
+    background-color: beige; 
+}
