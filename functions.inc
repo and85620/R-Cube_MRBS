@@ -211,7 +211,6 @@ function print_header($day=null, $month=null, $year=null, $area=null, $room=null
   global $theme;
 
   static $done_header = false;
-
   if ($done_header)
   {
     return;
@@ -242,7 +241,6 @@ function print_header($day=null, $month=null, $year=null, $area=null, $room=null
   {
     $year  = date("Y");
   }
-
   // Load the print_theme_header function appropriate to the theme.    If there
   // isn't one then fall back to the default header.
   if (is_readable("Themes/$theme/header.inc"))

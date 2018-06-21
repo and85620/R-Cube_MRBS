@@ -40,7 +40,7 @@ $vocab["addentry"]           = "新增";
 $vocab["editentry"]          = "修改";
 $vocab["editseries"]         = "整批修改";
 $vocab["namebooker"]         = "預約人姓名";
-$vocab["fulldescription"]    = "活動簡介";
+$vocab["fulldescription"]    = "活動簡介/需要器材";
 $vocab["date"]               = "日期";
 $vocab["start"]              = "開始日期";
 $vocab["end"]                = "結束日期";
@@ -78,7 +78,7 @@ $vocab["useful_n-weekly_value"] = "可以提供預約的星期.";
 
 // Used in view_entry.php
 $vocab["description"]        = "說明";
-$vocab["room"]               = "會議室/設備";
+$vocab["room"]               = "教室/場地";
 $vocab["createdby"]          = "預約人";
 $vocab["lastupdate"]         = "最後更新";
 $vocab["deleteentry"]        = "刪除";
@@ -180,7 +180,7 @@ $vocab["no_rooms_for_area"]  = "這個種類沒有定義會議室/設備";
 // Used in admin.php
 $vocab["edit"]               = "編輯";
 $vocab["delete"]             = "刪除";
-$vocab["rooms"]              = "會議室/設備";
+$vocab["rooms"]              = "教室/場地";
 $vocab["in"]                 = "在";
 $vocab["noareas"]            = "沒有種類";
 $vocab["addarea"]            = "新增種類";
@@ -200,7 +200,7 @@ $vocab["editroomarea"]       = "修改描述";
 $vocab["editroom"]           = "修改會議室/設備";
 $vocab["error_room"]         = "錯誤: 會議室/設備 ";
 $vocab["not_found"]          = "找不到";
-$vocab["room_admin_email"]   = "會議室管理者email";
+$vocab["room_admin_email"]   = "場地管理者email";
 $vocab["area_admin_email"]   = "區域管理者email";
 $vocab["invalid_email"]      = "不合法的email!";
 

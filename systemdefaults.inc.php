@@ -92,6 +92,7 @@ $db_persist = false;
  * Site identification information
  *********************************/
 $mrbs_admin = "Your Administrator";
+// 會寄給下面這個人(admin 的信箱)
 $mrbs_admin_email = "admin_email@your.org";
 // NOTE:  there are more email addresses in $mail_settings below.    You can also give
 // email addresses in the format 'Full Name <address>', for example:
@@ -969,10 +970,10 @@ $allow_cli = false;
 // Set to true or false as required
 // (Note:  the email addresses for the room and area administrators are set from the
 // edit_area_room.php page in MRBS)
-$mail_settings['admin_on_bookings']      = false;  // the addresses defined by $mail_settings['recipients'] below
+$mail_settings['admin_on_bookings']      = true;  // the addresses defined by $mail_settings['recipients'] below
 $mail_settings['area_admin_on_bookings'] = false;  // the area administrator
 $mail_settings['room_admin_on_bookings'] = false;  // the room administrator
-$mail_settings['booker']                 = false;  // the person making the booking
+$mail_settings['booker']                 = true;  // the person making the booking
 $mail_settings['book_admin_on_approval'] = false;  // the booking administrator when booking approval is enabled
                                                    // (which is the MRBS admin, but this setting allows MRBS
                                                    // to be extended to have separate booking approvers)     
@@ -991,8 +992,8 @@ $mail_settings['book_admin_on_approval'] = false;  // the booking administrator 
 // for new bookings if there was somebody to send them to)
 
 $mail_settings['on_new']    = true;   // when an entry is created
-$mail_settings['on_change'] = false;  // when an entry is changed
-$mail_settings['on_delete'] = false;  // when an entry is deleted
+$mail_settings['on_change'] = true;  // when an entry is changed
+$mail_settings['on_delete'] = true;  // when an entry is deleted
 
 // It is also possible to allow all users or just admins to choose not to send an
 // email when creating or editing a booking.  This can be useful if an inconsequential
@@ -1008,7 +1009,7 @@ $mail_settings['no_mail_default'] = false; // Default value for the 'no mail' ch
 // -------------
 // These settings determine what should be included in the email
 // Set to true or false as required
-$mail_settings['details']   = false; // Set to true if you want full booking details;
+$mail_settings['details']   = true; // Set to true if you want full booking details;
                                      // otherwise you just get a link to the entry
 $mail_settings['html']      = false; // Set to true if you want HTML mail
 $mail_settings['icalendar'] = false; // Set to true to include iCalendar details
@@ -1022,7 +1023,7 @@ $mail_settings['icalendar'] = false; // Set to true to include iCalendar details
 // -----------------------------------------
 
 // Set the language used for emails (choose an available lang.* file).
-$mail_settings['admin_lang'] = 'en';   // Default is 'en'.
+$mail_settings['admin_lang'] = 'zh-tw';   // Default is 'en'.
 
 
 // HOW TO EMAIL - ADDRESSES
@@ -1035,18 +1036,18 @@ $mail_settings['admin_lang'] = 'en';   // Default is 'en'.
 // if you are using any other authentication scheme then the following settings allow
 // you to specify a domain name that will be appended to the username to produce a
 // valid email address (eg "@domain.com").
-$mail_settings['domain'] = '';
+$mail_settings['domain'] = '@ncnu.r3.com';
 // If you use $mail_settings['domain'] above and username returned by mrbs contains extra
 // strings appended like domain name ('username.domain'), you need to provide
 // this extra string here so that it will be removed from the username.
-$mail_settings['username_suffix'] = '';
+$mail_settings['username_suffix'] = 'jhsong';
 
 
 // HOW TO EMAIL - BACKEND
 // ----------------------
 // Set the name of the backend used to transport your mails. Either 'mail',
 // 'smtp', 'sendmail' or 'qmail'. Default is 'mail'.
-$mail_settings['admin_backend'] = 'mail';
+$mail_settings['admin_backend'] = 'smtp';
 
 /*******************
  * Sendmail settings
@@ -1071,15 +1072,15 @@ $mail_settings['qmail']['qmail-inject-path'] = '/usr/bin/qmail-inject';
  */
 
 // These settings are only used with the "smtp" backend
-$smtp_settings['host'] = 'localhost';  // SMTP server
-$smtp_settings['port'] = 25;           // SMTP port number
-$smtp_settings['auth'] = false;        // Whether to use SMTP authentication
+$smtp_settings['host'] = 'ssl://smtp.gmail.com';  // SMTP server
+$smtp_settings['port'] = 465;           // SMTP port number
+$smtp_settings['auth'] = true;        // Whether to use SMTP authentication
 $smtp_settings['secure'] = '';         // Encryption method: '', 'tls' or 'ssl' - note that 'tls' means TLS is used even if the SMTP
                                        // server doesn't advertise it. Conversely if you specify '' and the server advertises TLS, TLS
                                        // will be used, unless the 'disable_opportunistic_tls' configuration parameter shown below is
                                        // set to true.
-$smtp_settings['username'] = '';       // Username (if using authentication)
-$smtp_settings['password'] = '';       // Password (if using authentication)
+$smtp_settings['username'] = 'and85620@gmail.com';       // Username (if using authentication)
+$smtp_settings['password'] = 'zcd123574';       // Password (if using authentication)
 $smtp_settings['disable_opportunistic_tls'] = false; // Set this to true to disable
                                                      // opportunistic TLS
                                                      // https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting#opportunistic-tls
@@ -1109,7 +1110,7 @@ $mail_settings['recipients'] = 'admin_email@your.org';
 
 // Set email address of the Carbon Copy field. Default is ''. You can define
 // more than one recipient (see 'recipients')
-$mail_settings['cc'] = '';
+$mail_settings['cc'] = 'ast850328@gmail.com';
 
 // Set to true if you want the cc addresses to be appended to the to line.
 // (Some email servers are configured not to send emails if the cc or bcc
@@ -1124,7 +1125,7 @@ $mail_settings['ics_filename'] = "booking";
 // If you are not getting emails it can be helpful by telling you (a) whether the mail functions
 // are being called in the first place (b) whether there are addresses to send email to and (c)
 // the result of the mail sending operation.
-$mail_settings['debug'] = false;
+$mail_settings['debug'] = true;
 // Where to send the debug output.  Can be 'browser' or 'log' (for the error_log)
 $mail_settings['debug_output'] = 'log';
 

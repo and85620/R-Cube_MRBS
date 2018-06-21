@@ -13,7 +13,6 @@ if (!function_exists('version_compare') || version_compare(PHP_VERSION, $min_PHP
 // We use require for some files rather than require_once because the values that
 // are assigned to variables will change depending on the context in which the file
 // is called.
-
 require_once "lib/autoload.inc";
 require_once 'lib/PHPMailer/PHPMailerAutoload.php';
 require "grab_globals.inc.php";   // this must be included before mrbs_auth.inc (due to WordPress - see comment in file)

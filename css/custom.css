@@ -41,12 +41,21 @@
     opacity: 1;
     right: 0;
 }
+/* 整體字形大小 */
 body{
     font-size: medium;
 }
+/* 操作說明 #SystemInterview 的css */
 #SystemInterview pre{
-    font-size: 15px;
+    font-size: 18px;
 }
 #SystemInterview{
     background-color: beige; 
 }
+/* 操作說明 #SystemInterview 的css */
+#RecentRule pre{
+    font-size: 18px;
+}
+/* #RecentRule{
+    background-color: white; 
+} */

@@ -1,9 +1,7 @@
 <?php
 namespace MRBS;
-
 require "defaultincludes.inc";
 require_once "version.inc";
-
 // Check the user is authorised for this page
 checkAuthorised();
 
@@ -12,13 +10,11 @@ $is_admin = (authGetUserLevel($user) >= $max_level);
 
 print_header($day, $month, $year, $area, isset($room) ? $room : null);
 
-echo "<h3>" . get_vocab("about_mrbs") . "</h3>\n";
+// echo "<h3>" . get_vocab("about_mrbs") . "</h3>\n";
+echo "<h3>說明文件</h3>\n";
 
 if (!$is_admin)
 {
-  echo "<table class=\"details list\">\n";
-  echo "<tr><td><a href=\"http://mrbs.sourceforge.net\">" . get_vocab("mrbs") . "</a></td><td>" . get_mrbs_version() . "</td></tr>\n";
-  echo "</table>\n";
 }
 else
 {
@@ -44,20 +40,13 @@ else
 }
 
 
-echo "<p>\n" . get_vocab("browserlang") .":\n";
-
-echo htmlspecialchars(implode(", ", array_keys(get_language_qualifiers())));
-
-echo "\n</p>\n";
-
-echo "<h3>" . get_vocab("help") . "</h3>\n";
-echo "<p>\n";
-echo get_vocab("please_contact") . '<a href="mailto:' . rawurlencode($mrbs_admin_email)
-  . '">' . htmlspecialchars($mrbs_admin)
-  . "</a> " . get_vocab("for_any_questions") . "\n";
-echo "</p>\n";
- 
 require_once "site_faq/site_faq" . $faqfilelang . ".html";
 
-output_trailer();
-
+echo "<div style=\"text-align: center\">"; 
+echo "教室地址：545南投縣埔里鎮西安路一段83號<br/>";
+echo "連絡電話：(049)2910960 轉2293 （通識教育中心）<br/>";
+echo "(049)290 0102 （永樂園）<br/>";
+echo "連絡信箱：rschool.ncnu@gmail.com<br/>";
+echo "</div>";
+ //output_trailer();
+ echo "</div>";
