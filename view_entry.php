@@ -177,7 +177,6 @@ function generateTextArea($form_action, $id, $series, $action_type, $returl, $su
 
 
 // Get non-standard form variables
-//
 // If $series is TRUE, it means that the $id is the id of an 
 // entry in the repeat table.  Otherwise it's from the entry table.
 $id = get_form_var('id', 'int');
@@ -193,7 +192,7 @@ if (isset($action))
 }
 
 // Check the user is authorised for this page
-checkAuthorised();
+//checkAuthorised();
 
 // Also need to know whether they have admin rights
 $user = getUserName();
