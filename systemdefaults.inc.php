@@ -92,8 +92,8 @@ $db_persist = false;
  * Site identification information
  *********************************/
 $mrbs_admin = "Your Administrator";
-// 會寄給下面這個人(admin 的信箱)
-$mrbs_admin_email = "admin_email@your.org";
+// 下面這個信箱還不知道幹麻用
+$mrbs_admin_email = "s103213027@mail1.ncnu.edu.tw";
 // NOTE:  there are more email addresses in $mail_settings below.    You can also give
 // email addresses in the format 'Full Name <address>', for example:
 // $mrbs_admin_email = 'Booking System <admin_email@your.org>';
@@ -1106,11 +1106,12 @@ $mail_settings['organizer'] = 'mrbs@your.org';
 
 // Set the recipient email. Default is 'admin_email@your.org'. You can define
 // more than one recipient like this "john@doe.com,scott@tiger.com"
-$mail_settings['recipients'] = 'admin_email@your.org';
+// 會寄給下面這個人
+$mail_settings['recipients'] = 's103213027@mail1.ncnu.edu.tw';
 
 // Set email address of the Carbon Copy field. Default is ''. You can define
 // more than one recipient (see 'recipients')
-$mail_settings['cc'] = 'ast850328@gmail.com';
+$mail_settings['cc'] = '';
 
 // Set to true if you want the cc addresses to be appended to the to line.
 // (Some email servers are configured not to send emails if the cc or bcc
