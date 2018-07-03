@@ -19,7 +19,7 @@ if (!$is_admin)
 else
 {
   // Restrict the configuration and server details to admins, for security reasons.
-  echo "<table class=\"details has_caption list\">\n";
+  /*echo "<table class=\"details has_caption list\">\n";
   echo "<caption>" . get_vocab("config_details") . "</caption>\n";
   echo "<tr><td>" . get_vocab("mrbs_version") . "</td><td>" . get_mrbs_version() . "</td></tr>\n";
   echo '<tr><td>$auth[\'type\']</td><td>' . htmlspecialchars($auth['type']) . "</td></tr>\n";
@@ -36,7 +36,7 @@ else
        "</td></tr>\n";
   echo "<tr><td>" . get_vocab("server_software") . "</td><td>" . htmlspecialchars(get_server_software()) . "</td></tr>\n";
   echo "<tr><td>PHP</td><td>" . phpversion() . "</td></tr>\n";
-  echo "</table>\n";
+  echo "</table>\n";*/
 }
 
 
