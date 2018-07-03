@@ -93,7 +93,7 @@ $db_persist = false;
  *********************************/
 $mrbs_admin = "Your Administrator";
 // 下面這個信箱還不知道幹麻用
-$mrbs_admin_email = "s103213027@mail1.ncnu.edu.tw";
+$mrbs_admin_email = "";
 // NOTE:  there are more email addresses in $mail_settings below.    You can also give
 // email addresses in the format 'Full Name <address>', for example:
 // $mrbs_admin_email = 'Booking System <admin_email@your.org>';
@@ -1072,6 +1072,7 @@ $mail_settings['qmail']['qmail-inject-path'] = '/usr/bin/qmail-inject';
  */
 
 // These settings are only used with the "smtp" backend
+// 底下這個人發信
 $smtp_settings['host'] = 'ssl://smtp.gmail.com';  // SMTP server
 $smtp_settings['port'] = 465;           // SMTP port number
 $smtp_settings['auth'] = true;        // Whether to use SMTP authentication
@@ -1092,6 +1093,7 @@ $smtp_settings['ssl_verify_peer_name'] = true;
 $smtp_settings['ssl_allow_self_signed'] = false;
 
 // EMAIL - MISCELLANEOUS
+// 選擇副本寄給誰
 // ---------------------
 
 // Set the email address of the From field. Default is 'admin_email@your.org'
@@ -1107,7 +1109,7 @@ $mail_settings['organizer'] = 'mrbs@your.org';
 // Set the recipient email. Default is 'admin_email@your.org'. You can define
 // more than one recipient like this "john@doe.com,scott@tiger.com"
 // 會寄給下面這個人
-$mail_settings['recipients'] = 's103213027@mail1.ncnu.edu.tw';
+$mail_settings['recipients'] = 'and85620@gmail.com';
 
 // Set email address of the Carbon Copy field. Default is ''. You can define
 // more than one recipient (see 'recipients')
