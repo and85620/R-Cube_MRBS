@@ -1,6 +1,6 @@
 <?php
 namespace MRBS;
-
+require_once('env.php');
 /**************************************************************************
  *   MRBS system defaults file
  *
@@ -1080,8 +1080,8 @@ $smtp_settings['secure'] = '';         // Encryption method: '', 'tls' or 'ssl' 
                                        // server doesn't advertise it. Conversely if you specify '' and the server advertises TLS, TLS
                                        // will be used, unless the 'disable_opportunistic_tls' configuration parameter shown below is
                                        // set to true.
-$smtp_settings['username'] = 'and85620@gmail.com';       // Username (if using authentication)
-$smtp_settings['password'] = 'zcd123574';       // Password (if using authentication)
+$smtp_settings['username'] = $env_emailaddress;       // Username (if using authentication)
+$smtp_settings['password'] = $env_emailpassword;       // Password (if using authentication)
 $smtp_settings['disable_opportunistic_tls'] = false; // Set this to true to disable
                                                      // opportunistic TLS
                                                      // https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting#opportunistic-tls
@@ -1109,7 +1109,7 @@ $mail_settings['organizer'] = 'mrbs@your.org';
 // Set the recipient email. Default is 'admin_email@your.org'. You can define
 // more than one recipient like this "john@doe.com,scott@tiger.com"
 // 會寄給下面這個人
-$mail_settings['recipients'] = 'and85620@gmail.com';
+$mail_settings['recipients'] = $env_emailaddress;
 
 // Set email address of the Carbon Copy field. Default is ''. You can define
 // more than one recipient (see 'recipients')
